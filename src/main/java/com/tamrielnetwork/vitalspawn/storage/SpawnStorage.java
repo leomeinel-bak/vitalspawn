@@ -20,6 +20,7 @@ package com.tamrielnetwork.vitalspawn.storage;
 
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public abstract class SpawnStorage {
@@ -28,7 +29,7 @@ public abstract class SpawnStorage {
 
 	public abstract Location getSpawn();
 
-	public abstract void saveSpawn();
+	public abstract void saveSpawn(CommandSender sender);
 
 	public abstract void clear();
 

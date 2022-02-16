@@ -64,9 +64,8 @@ public class VitalSpawnCmd implements CommandExecutor {
 			Utils.sendMessage(sender, "no-perms");
 			return;
 		}
-		main.getSpawnStorage().saveSpawn();
+		main.getSpawnStorage().saveSpawn(sender);
 
-		commandSender = sender;
 		Utils.sendMessage(sender, "spawn-set");
 
 
@@ -94,17 +93,8 @@ public class VitalSpawnCmd implements CommandExecutor {
 			return;
 		}
 		((Player) sender).teleport(location);
-		commandSender = sender;
 		Utils.sendMessage(sender, "spawn-tp");
 
-	}
-
-	public Location getLocation(CommandSender sender) {
-		return ((Player) sender).getLocation();
-	}
-
-	public CommandSender getCommandSender() {
-		return commandSender;
 	}
 
 }

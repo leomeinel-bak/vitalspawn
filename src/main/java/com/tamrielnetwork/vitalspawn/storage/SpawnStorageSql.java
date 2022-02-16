@@ -22,6 +22,8 @@ import com.tamrielnetwork.vitalspawn.storage.mysql.SqlManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,10 +51,10 @@ public class SpawnStorageSql extends SpawnStorage {
 	}
 
 	@Override
-	public void saveSpawn() {
+	public void saveSpawn(CommandSender sender) {
 		clear();
 
-		Location location = main.getVitalSpawnCmd().getLocation(main.getVitalSpawnCmd().getCommandSender());
+		Location location = ((Player) sender).getLocation();
 
 		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO" + main.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Pitch`, `Yaw`) VALUES (?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, location.getWorld().toString());

@@ -1,4 +1,6 @@
 //file:noinspection GrUnresolvedAccess
+//file:noinspection Annotator
+//file:noinspection Annotator
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
