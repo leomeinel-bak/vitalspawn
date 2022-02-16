@@ -67,7 +67,7 @@ public class VitalSpawnCmd implements CommandExecutor {
 		main.getSpawnStorage().saveSpawn();
 
 		commandSender = sender;
-		Utils.sendMessage(sender,"spawn-set");
+		Utils.sendMessage(sender, "spawn-set");
 
 
 	}
