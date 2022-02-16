@@ -1,4 +1,12 @@
-flyspeed:
-  # Values from 1-10
-  # Don't use negative or floating-point numbers
-  limit: 10
+spawn-on-join: true
+
+# Choose a storage system (mysql or yaml)
+storage-system: yaml
+
+mysql:
+  host: "localhost"
+  port: 3306
+  database: vitalspawn
+  username: "vitalspawn"
+  password: ""
+  prefix: "server_"

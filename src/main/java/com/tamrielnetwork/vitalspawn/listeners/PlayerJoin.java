@@ -16,36 +16,31 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalfly.listeners;
+package com.tamrielnetwork.vitalspawn.listeners;
 
-import com.tamrielnetwork.vitalfly.VitalFly;
+import com.tamrielnetwork.vitalspawn.VitalSpawn;
+import com.tamrielnetwork.vitalspawn.utils.Utils;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import static org.bukkit.GameMode.SURVIVAL;
+public class PlayerJoin implements Listener {
 
-public class PlayerGamemodeChange implements Listener {
-
-	private final VitalFly main = JavaPlugin.getPlugin(VitalFly.class);
+	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@EventHandler
-	public void onGamemodeChange(PlayerGameModeChangeEvent event) {
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				if (!event.getPlayer().hasPermission("vitalfly.fly") || !event.getPlayer().isOnline() || !event.getPlayer().hasPermission("vitalfly.fly.gamemodechange")) {
-					return;
-				}
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		if (!main.getConfig().getBoolean("spawn-on-join") || event.getPlayer().hasPermission("vitalspawn.spawnonjoin")) {
+			return;
+		}
 
-				if (event.getNewGameMode() == SURVIVAL) {
-					event.getPlayer().setAllowFlight(true);
-					event.getPlayer().setFlying(true);
-				}
-			}
-		}.runTaskLater(main, 1);
+		Location location = main.getSpawnStorage().getSpawn();
+		if (location == null) {
+			Utils.sendMessage(event.getPlayer(), "no-spawn");
+			return;
+		}
+		event.getPlayer().teleport(main.getSpawnStorage().getSpawn());
 	}
-
 }

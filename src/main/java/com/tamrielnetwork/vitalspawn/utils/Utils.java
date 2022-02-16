@@ -16,9 +16,9 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalfly.utils;
+package com.tamrielnetwork.vitalspawn.utils;
 
-import com.tamrielnetwork.vitalfly.VitalFly;
+import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,7 +30,7 @@ import java.util.Objects;
 
 public class Utils {
 
-	private static final VitalFly main = JavaPlugin.getPlugin(VitalFly.class);
+	private static final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	public static void sendMessage(CommandSender player, Map<String, String> placeholders, String message) {
 		List<String> messages = getMessages(message);

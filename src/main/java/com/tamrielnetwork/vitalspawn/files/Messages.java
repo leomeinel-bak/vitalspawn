@@ -16,9 +16,9 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalfly.files;
+package com.tamrielnetwork.vitalspawn.files;
 
-import com.tamrielnetwork.vitalfly.VitalFly;
+import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,7 +27,7 @@ import java.io.File;
 
 public class Messages {
 
-	private final VitalFly main = JavaPlugin.getPlugin(VitalFly.class);
+	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 	private final File messagesFile;
 	private final FileConfiguration messagesConf;
 
