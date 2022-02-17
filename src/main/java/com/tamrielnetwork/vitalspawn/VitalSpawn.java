@@ -46,7 +46,6 @@ public final class VitalSpawn extends JavaPlugin {
 
 		setupStorage();
 
-		spawnStorage.getSpawn();
 		messages = new Messages();
 		prefix = getConfig().getString("mysql.prefix");
 
