@@ -68,7 +68,6 @@ public class VitalSpawnCmd implements CommandExecutor {
 
 		Utils.sendMessage(sender, "spawn-set");
 
-
 	}
 
 	private void teleportSpawn(CommandSender sender, String[] args) {
