@@ -44,11 +44,11 @@ public class SpawnStorageYaml extends SpawnStorage {
 	@Override
 	public Location getSpawn() {
 		World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString("spawn.world")));
-		int x = spawnConf.getInt("");
-		int y = spawnConf.getInt("");
-		int z = spawnConf.getInt("");
-		int pitch = spawnConf.getInt("");
-		int yaw = spawnConf.getInt("");
+		int x = spawnConf.getInt("spawn.x");
+		int y = spawnConf.getInt("spawn.y");
+		int z = spawnConf.getInt("spawn.z");
+		int pitch = spawnConf.getInt("spawn.pitch");
+		int yaw = spawnConf.getInt("spawn.yaw");
 		return new Location(world, x, y, z, pitch, yaw);
 	}
 
