@@ -20,7 +20,8 @@ package com.tamrielnetwork.vitalspawn;
 
 import com.tamrielnetwork.vitalspawn.commands.VitalSpawnCmd;
 import com.tamrielnetwork.vitalspawn.files.Messages;
-import com.tamrielnetwork.vitalspawn.listeners.PlayerJoin;
+import com.tamrielnetwork.vitalspawn.listeners.PlayerSpawn;
+import com.tamrielnetwork.vitalspawn.listeners.PlayerRespawn;
 import com.tamrielnetwork.vitalspawn.storage.SpawnStorage;
 import com.tamrielnetwork.vitalspawn.storage.SpawnStorageSql;
 import com.tamrielnetwork.vitalspawn.storage.SpawnStorageYaml;
@@ -72,7 +73,8 @@ public final class VitalSpawn extends JavaPlugin {
 	}
 
 	private void registerListeners() {
-		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+		getServer().getPluginManager().registerEvents(new PlayerSpawn(), this);
+		getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
 	}
 
 	public Messages getMessages() {

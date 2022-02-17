@@ -23,16 +23,16 @@ import com.tamrielnetwork.vitalspawn.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
-public class PlayerJoin implements Listener {
+public class PlayerSpawn implements Listener {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		if (!main.getConfig().getBoolean("spawn-on-join") || event.getPlayer().hasPermission("vitalspawn.spawnonjoin")) {
+	public void onPlayerJoin(PlayerSpawnLocationEvent event) {
+		if (!main.getConfig().getBoolean("spawn-on-spawn") && event.getPlayer().hasPermission("vitalspawn.onspawn")) {
 			return;
 		}
 
@@ -41,6 +41,6 @@ public class PlayerJoin implements Listener {
 			Utils.sendMessage(event.getPlayer(), "no-spawn");
 			return;
 		}
-		event.getPlayer().teleport(main.getSpawnStorage().getSpawn());
+		event.setSpawnLocation(main.getSpawnStorage().getSpawn());
 	}
 }

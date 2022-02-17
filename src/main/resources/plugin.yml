@@ -16,6 +16,9 @@ permissions:
   vitalspawn.setspawn:
     description: "Permission to set spawn"
     default: op
-  vitalspawn.spawnonjoin:
-    description: "Permission to teleport to spawn on join"
+  vitalspawn.onspawn:
+    description: "Permission to teleport to spawn on spawn"
+    default: op
+  vitalspawn.onrespawn:
+    description: "Permission to teleport to spawn on respawn"
     default: op
