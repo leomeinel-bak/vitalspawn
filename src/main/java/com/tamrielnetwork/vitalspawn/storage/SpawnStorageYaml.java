@@ -51,9 +51,10 @@ public class SpawnStorageYaml extends SpawnStorage {
 		int x = spawnConf.getInt("spawn.x");
 		int y = spawnConf.getInt("spawn.y");
 		int z = spawnConf.getInt("spawn.z");
-		int pitch = spawnConf.getInt("spawn.pitch");
 		int yaw = spawnConf.getInt("spawn.yaw");
-		return new Location(world, x, y, z, pitch, yaw);
+		int pitch = spawnConf.getInt("spawn.pitch");
+
+		return new Location(world, x, y, z, yaw, pitch);
 	}
 
 	@Override
@@ -67,8 +68,8 @@ public class SpawnStorageYaml extends SpawnStorage {
 		spawnConf.set("spawn.x", (int) location.getX());
 		spawnConf.set("spawn.y", (int) location.getY());
 		spawnConf.set("spawn.z", (int) location.getZ());
-		spawnConf.set("spawn.pitch", (int) location.getPitch());
 		spawnConf.set("spawn.yaw", (int) location.getYaw());
+		spawnConf.set("spawn.pitch", (int) location.getPitch());
 
 		save();
 	}

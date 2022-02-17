@@ -44,10 +44,10 @@ public class SpawnStorageSql extends SpawnStorage {
 				int x = rs.getInt(2);
 				int y = rs.getInt(3);
 				int z = rs.getInt(4);
-				int pitch = rs.getInt(5);
-				int yaw = rs.getInt(6);
+				int yaw = rs.getInt(5);
+				int pitch = rs.getInt(6);
 
-				return new Location(world, x, y, z, pitch, yaw);
+				return new Location(world, x, y, z, yaw, pitch);
 			}
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
@@ -61,13 +61,13 @@ public class SpawnStorageSql extends SpawnStorage {
 
 		Location location = ((Player) sender).getLocation();
 
-		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO" + main.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Pitch`, `Yaw`) VALUES (?, ?, ?, ?, ?, ?)")) {
+		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO" + main.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, location.getWorld().getName());
 			insertStatement.setInt(2, (int) location.getX());
 			insertStatement.setInt(3, (int) location.getY());
 			insertStatement.setInt(4, (int) location.getZ());
-			insertStatement.setInt(5, (int) location.getPitch());
-			insertStatement.setInt(6, (int) location.getYaw());
+			insertStatement.setInt(5, (int) location.getYaw());
+			insertStatement.setInt(6, (int) location.getPitch());
 			insertStatement.executeUpdate();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
