@@ -71,6 +71,7 @@ This plugin is perfect for any server wanting to have a spawn.
 * Set spawn
 * Teleport to spawn
 * MySQL/MariaDB support
+* Teleport to spawn on spawn and respawn
 
 ### Built With
 
@@ -95,9 +96,13 @@ To get the plugin running on your server follow these simple steps.
 * Command: `/vitalspawn spawn`
 * Description: Teleport to spawn
 
-3. Permission: `vitalspawn.spawnonjoin`
+3. Permission: `vitalspawn.onspawn`
 
-* Description: Teleport to spawn on join
+* Description: Teleport to spawn on spawn
+
+3. Permission: `vitalspawn.onrespawn`
+
+* Description: Teleport to spawn on respawn
 
 ### Configuration - config.yml
 

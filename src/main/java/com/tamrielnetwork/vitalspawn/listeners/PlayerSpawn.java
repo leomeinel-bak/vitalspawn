@@ -31,7 +31,7 @@ public class PlayerSpawn implements Listener {
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@EventHandler
-	public void onPlayerJoin(PlayerSpawnLocationEvent event) {
+	public void onPlayerSpawn(PlayerSpawnLocationEvent event) {
 		if (!main.getConfig().getBoolean("spawn-on-spawn") && event.getPlayer().hasPermission("vitalspawn.onspawn")) {
 			return;
 		}

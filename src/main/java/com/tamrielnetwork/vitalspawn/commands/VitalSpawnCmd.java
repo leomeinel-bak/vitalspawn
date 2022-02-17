@@ -22,16 +22,19 @@ import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import com.tamrielnetwork.vitalspawn.utils.Utils;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class VitalSpawnCmd implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class VitalSpawnCmd implements TabExecutor {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
-	private CommandSender commandSender;
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -96,4 +99,19 @@ public class VitalSpawnCmd implements CommandExecutor {
 
 	}
 
+	@Override
+	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+		@Nullable List<String> tabComplete = new ArrayList<>();
+		if (args.length == 1) {
+			if (sender.hasPermission("vitalspawn.spawn")) {
+				tabComplete.add("spawn");
+			}
+			if (sender.hasPermission("vitalspawn.setspawn")) {
+				tabComplete.add("setspawn");
+			}
+		} else {
+			tabComplete = null;
+		}
+		return tabComplete;
+	}
 }

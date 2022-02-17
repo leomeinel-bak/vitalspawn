@@ -42,6 +42,7 @@ public final class VitalSpawn extends JavaPlugin {
 		registerListeners();
 
 		Objects.requireNonNull(getCommand("vitalspawn")).setExecutor(new VitalSpawnCmd());
+		Objects.requireNonNull(getCommand("vitalspawn")).setTabCompleter(new VitalSpawnCmd());
 
 		saveDefaultConfig();
 
