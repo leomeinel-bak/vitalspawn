@@ -50,7 +50,7 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 		Location location = ((Player) sender).getLocation();
 
-		spawnConf.set("spawn.world", location.getWorld().toString());
+		spawnConf.set("spawn.world", location.getWorld().getName());
 		spawnConf.set("spawn.x", (int) location.getX());
 		spawnConf.set("spawn.y", (int) location.getY());
 		spawnConf.set("spawn.z", (int) location.getZ());
