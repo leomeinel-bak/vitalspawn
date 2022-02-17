@@ -86,12 +86,12 @@ To get the plugin running on your server follow these simple steps.
 
 ### Commands and Permissions
 
-1. Permission: `vitalspawn.spawn`
+1. Permission: `vitalspawn.setspawn`
 
 * Command: `/vitalspawn setspawn`
 * Description: Set spawn
 
-2. Permission: `vitalspawn.setspawn`
+2. Permission: `vitalspawn.spawn`
 
 * Command: `/vitalspawn spawn`
 * Description: Teleport to spawn
