@@ -43,6 +43,10 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 	@Override
 	public Location getSpawn() {
+		if (spawnConf.getString("spawn.world") == null) {
+			Bukkit.getLogger().severe("VitalSpawn cannot find world in spawn.yml");
+			return null;
+		}
 		World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString("spawn.world")));
 		int x = spawnConf.getInt("spawn.x");
 		int y = spawnConf.getInt("spawn.y");

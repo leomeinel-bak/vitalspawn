@@ -36,6 +36,10 @@ public class SpawnStorageSql extends SpawnStorage {
 	public Location getSpawn() {
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + main.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
+				if (rs.getString(1) == null) {
+					Bukkit.getLogger().severe("VitalSpawn cannot find world in spawn.yml");
+					return null;
+				}
 				World world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(1)));
 				int x = rs.getInt(2);
 				int y = rs.getInt(3);
