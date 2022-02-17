@@ -18,7 +18,9 @@
 
 package com.tamrielnetwork.vitalspawn.storage;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -26,6 +28,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class SpawnStorageYaml extends SpawnStorage {
 
@@ -40,7 +43,13 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 	@Override
 	public Location getSpawn() {
-		return spawnConf.getLocation("spawn");
+		World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString("spawn.world")));
+		int x = spawnConf.getInt("");
+		int y = spawnConf.getInt("");
+		int z = spawnConf.getInt("");
+		int pitch = spawnConf.getInt("");
+		int yaw = spawnConf.getInt("");
+		return new Location(world, x, y, z, pitch, yaw);
 	}
 
 	@Override

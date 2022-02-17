@@ -28,6 +28,7 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class SpawnStorageSql extends SpawnStorage {
 
@@ -35,7 +36,7 @@ public class SpawnStorageSql extends SpawnStorage {
 	public Location getSpawn() {
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + main.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
-				World world = Bukkit.getWorld(rs.getString(1));
+				World world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(1)));
 				int x = rs.getInt(2);
 				int y = rs.getInt(3);
 				int z = rs.getInt(4);
