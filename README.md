@@ -107,7 +107,8 @@ To get the plugin running on your server follow these simple steps.
 ### Configuration - config.yml
 
 ```
-spawn-on-join: true
+spawn-on-spawn: true
+spawn-on-respawn: true
 
 # Choose a storage system (mysql or yaml)
 storage-system: yaml
