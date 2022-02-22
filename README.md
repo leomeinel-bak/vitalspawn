@@ -75,7 +75,7 @@ This plugin is perfect for any server wanting to have a spawn.
 
 ### Built With
 
-* [Gradle 7](https://docs.gradle.org/7.3.3/release-notes.html)
+* [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
 * [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
 
 <!-- GETTING STARTED -->
