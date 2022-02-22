@@ -20,8 +20,8 @@ package com.tamrielnetwork.vitalspawn;
 
 import com.tamrielnetwork.vitalspawn.commands.VitalSpawnCmd;
 import com.tamrielnetwork.vitalspawn.files.Messages;
-import com.tamrielnetwork.vitalspawn.listeners.PlayerSpawn;
 import com.tamrielnetwork.vitalspawn.listeners.PlayerRespawn;
+import com.tamrielnetwork.vitalspawn.listeners.PlayerSpawn;
 import com.tamrielnetwork.vitalspawn.storage.SpawnStorage;
 import com.tamrielnetwork.vitalspawn.storage.SpawnStorageSql;
 import com.tamrielnetwork.vitalspawn.storage.SpawnStorageYaml;

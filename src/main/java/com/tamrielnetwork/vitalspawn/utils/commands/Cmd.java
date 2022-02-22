@@ -1,5 +1,5 @@
 /*
- * VitalTp is a Spigot Plugin that gives players the ability to teleport to each other.
+ * VitalSpawn is a Spigot Plugin that lets you set a spawn point.
  * Copyright © 2022 Leopold Meinel
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://github.com/TamrielNetwork/VitalTp/blob/main/LICENSE
+ * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
  */
 
 package com.tamrielnetwork.vitalspawn.utils.commands;
