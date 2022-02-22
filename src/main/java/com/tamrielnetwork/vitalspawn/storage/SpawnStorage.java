@@ -22,6 +22,7 @@ import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class SpawnStorage {
 
@@ -29,7 +30,7 @@ public abstract class SpawnStorage {
 
 	public abstract Location getSpawn();
 
-	public abstract void saveSpawn(CommandSender sender);
+	public abstract void saveSpawn(@NotNull CommandSender sender);
 
 	public abstract void clear();
 

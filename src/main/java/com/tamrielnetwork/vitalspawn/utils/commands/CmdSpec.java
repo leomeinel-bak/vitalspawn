@@ -16,34 +16,36 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalspawn.listeners;
+package com.tamrielnetwork.vitalspawn.utils.commands;
 
-import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import com.tamrielnetwork.vitalspawn.utils.Chat;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
-public class PlayerSpawn implements Listener {
+public class CmdSpec {
 
-	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
-
-	@EventHandler
-	public void onPlayerSpawn(@NotNull PlayerSpawnLocationEvent event) {
-		Player player = event.getPlayer();
-		if (!main.getConfig().getBoolean("spawn-on-spawn") && player.hasPermission("vitalspawn.onspawn")) {
-			return;
+	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm, Location location) {
+		if (Cmd.isInvalidSender(sender)) {
+			return true;
+		}
+		if (Cmd.isNotPermitted(sender, perm)) {
+			return true;
 		}
 
-		Location location = main.getSpawnStorage().getSpawn();
-		if (location == null) {
-			Chat.sendMessage(player, "no-spawn");
-			return;
-		}
-		event.setSpawnLocation(main.getSpawnStorage().getSpawn());
+		return isInvalidLocation(sender, location);
 	}
+
+	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
+		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
+	}
+
+	private static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
+		if (location == null) {
+			Chat.sendMessage(sender, "no-spawn");
+			return true;
+		}
+		return false;
+	}
+
 }

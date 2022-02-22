@@ -19,26 +19,29 @@
 package com.tamrielnetwork.vitalspawn.listeners;
 
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
-import com.tamrielnetwork.vitalspawn.utils.Utils;
+import com.tamrielnetwork.vitalspawn.utils.Chat;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 public class PlayerRespawn implements Listener {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@EventHandler
-	public void onPlayerRespawn(PlayerRespawnEvent event) {
-		if (!main.getConfig().getBoolean("spawn-on-respawn") && event.getPlayer().hasPermission("vitalspawn.onrespawn")) {
+	public void onPlayerRespawn(@NotNull PlayerRespawnEvent event) {
+		Player player = event.getPlayer();
+		if (!main.getConfig().getBoolean("spawn-on-respawn") && player.hasPermission("vitalspawn.onrespawn")) {
 			return;
 		}
 
 		Location location = main.getSpawnStorage().getSpawn();
 		if (location == null) {
-			Utils.sendMessage(event.getPlayer(), "no-spawn");
+			Chat.sendMessage(player, "no-spawn");
 			return;
 		}
 		event.setRespawnLocation(main.getSpawnStorage().getSpawn());

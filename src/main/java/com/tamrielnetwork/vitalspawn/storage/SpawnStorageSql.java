@@ -24,6 +24,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,10 +57,11 @@ public class SpawnStorageSql extends SpawnStorage {
 	}
 
 	@Override
-	public void saveSpawn(CommandSender sender) {
+	public void saveSpawn(@NotNull CommandSender sender) {
 		clear();
 
-		Location location = ((Player) sender).getLocation();
+		Player senderPlayer = (Player) sender;
+		Location location = senderPlayer.getLocation();
 
 		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO" + main.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, location.getWorld().getName());

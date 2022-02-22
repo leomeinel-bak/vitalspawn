@@ -25,6 +25,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,11 +59,12 @@ public class SpawnStorageYaml extends SpawnStorage {
 	}
 
 	@Override
-	public void saveSpawn(CommandSender sender) {
+	public void saveSpawn(@NotNull CommandSender sender) {
 
 		clear();
+		Player senderPlayer = (Player) sender;
 
-		Location location = ((Player) sender).getLocation();
+		Location location = senderPlayer.getLocation();
 
 		spawnConf.set("spawn.world", location.getWorld().getName());
 		spawnConf.set("spawn.x", (int) location.getX());

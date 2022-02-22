@@ -19,7 +19,9 @@
 package com.tamrielnetwork.vitalspawn.commands;
 
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
-import com.tamrielnetwork.vitalspawn.utils.Utils;
+import com.tamrielnetwork.vitalspawn.utils.Chat;
+import com.tamrielnetwork.vitalspawn.utils.commands.Cmd;
+import com.tamrielnetwork.vitalspawn.utils.commands.CmdSpec;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -38,79 +40,54 @@ public class VitalSpawnCmd implements TabExecutor {
 
 	@Override
 	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-		// Check args length
-		if (args.length == 0) {
-			Utils.sendMessage(sender, "no-args");
+
+		if (Cmd.isArgsLengthNotEqualTo(sender, args, 1)) {
 			return true;
 		}
-		// Check arg 0
+
 		switch (args[0]) {
-			case "setspawn" -> setSpawn(sender, args);
-			case "spawn" -> teleportSpawn(sender, args);
-			default -> Utils.sendMessage(sender, "invalid-option");
+			case "spawn" -> doSpawn(sender);
+			case "setspawn" -> setSpawn(sender);
+			default -> Chat.sendMessage(sender, "invalid-option");
 		}
 		return true;
 	}
 
-	private void setSpawn(CommandSender sender, String[] args) {
-		if (args.length > 1) {
-			Utils.sendMessage(sender, "invalid-option");
-			return;
-		}
-		// Check if command sender is a player
-		if (!(sender instanceof Player)) {
-			Utils.sendMessage(sender, "player-only");
-			return;
-		}
-		// Check perms
-		if (!sender.hasPermission("vitalspawn.setspawn")) {
-			Utils.sendMessage(sender, "no-perms");
-			return;
-		}
-		main.getSpawnStorage().saveSpawn(sender);
+	private void doSpawn(@NotNull CommandSender sender) {
+		Player senderPlayer = (Player) sender;
+		Location location = main.getSpawnStorage().getSpawn();
 
-		Utils.sendMessage(sender, "spawn-set");
+		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.spawn", location)) {
+			return;
+		}
+
+		senderPlayer.teleport(location);
+		Chat.sendMessage(sender, "spawn-tp");
 
 	}
 
-	private void teleportSpawn(CommandSender sender, String[] args) {
-		if (args.length > 1) {
-			Utils.sendMessage(sender, "invalid-option");
-			return;
-		}
-		// Check if command sender is a player
-		if (!(sender instanceof Player)) {
-			Utils.sendMessage(sender, "player-only");
-			return;
-		}
-		// Check perms
-		if (!sender.hasPermission("vitalspawn.spawn")) {
-			Utils.sendMessage(sender, "no-perms");
+	private void setSpawn(@NotNull CommandSender sender) {
+
+		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.setspawn")) {
 			return;
 		}
 
-		Location location = main.getSpawnStorage().getSpawn();
-		if (location == null) {
-			Utils.sendMessage(sender, "no-spawn");
-			return;
-		}
-		((Player) sender).teleport(location);
-		Utils.sendMessage(sender, "spawn-tp");
+		main.getSpawnStorage().saveSpawn(sender);
+		Chat.sendMessage(sender, "spawn-set");
 
 	}
 
 	@Override
 	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
 		@Nullable List<String> tabComplete = new ArrayList<>();
-		if (args.length == 1) {
-			if (sender.hasPermission("vitalspawn.spawn")) {
-				tabComplete.add("spawn");
-			}
-			if (sender.hasPermission("vitalspawn.setspawn")) {
-				tabComplete.add("setspawn");
-			}
-		} else {
-			tabComplete = null;
+		if (args.length != 1) {
+			return null;
+		}
+		if (sender.hasPermission("vitalspawn.spawn")) {
+			tabComplete.add("spawn");
+		}
+		if (sender.hasPermission("vitalspawn.setspawn")) {
+			tabComplete.add("setspawn");
 		}
 		return tabComplete;
 	}

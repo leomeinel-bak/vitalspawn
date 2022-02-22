@@ -1,6 +1,5 @@
 no-args: "&7Enter this command: &b/vitalspawn setspawn/spawn"
 player-only: "&cThis command can only be executed by players!"
-invalid-option: "&cInvalid option!"
 no-perms: "&7You don't have enough permissions!"
 spawn-set: "&7Spawn location set"
 spawn-tp: "&7Teleported to spawn"
