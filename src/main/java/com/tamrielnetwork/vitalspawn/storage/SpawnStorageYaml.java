@@ -37,6 +37,7 @@ public class SpawnStorageYaml extends SpawnStorage {
 	private final FileConfiguration spawnConf;
 
 	public SpawnStorageYaml() {
+
 		spawnFile = new File(main.getDataFolder(), "spawn.yml");
 		spawnConf = YamlConfiguration.loadConfiguration(spawnFile);
 		save();
@@ -44,6 +45,7 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 	@Override
 	public Location getSpawn() {
+
 		if (spawnConf.getString("spawn.world") == null) {
 			Bukkit.getLogger().severe("VitalSpawn cannot find world in spawn.yml");
 			return null;
@@ -78,12 +80,14 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 	@Override
 	public void clear() {
+
 		for (String key : spawnConf.getKeys(false)) {
 			spawnConf.set(key, null);
 		}
 	}
 
 	public void save() {
+
 		try {
 			spawnConf.save(spawnFile);
 		} catch (IOException e) {

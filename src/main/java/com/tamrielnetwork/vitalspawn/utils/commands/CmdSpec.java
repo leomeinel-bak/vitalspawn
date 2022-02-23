@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 public class CmdSpec {
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm, Location location) {
+
 		if (Cmd.isInvalidSender(sender)) {
 			return true;
 		}
@@ -37,10 +38,12 @@ public class CmdSpec {
 	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
+
 		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
 	}
 
 	private static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
+
 		if (location == null) {
 			Chat.sendMessage(sender, "no-spawn");
 			return true;

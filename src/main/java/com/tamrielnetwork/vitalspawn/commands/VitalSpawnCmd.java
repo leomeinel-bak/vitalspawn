@@ -45,7 +45,7 @@ public class VitalSpawnCmd implements TabExecutor {
 			return true;
 		}
 
-		switch (args[0]) {
+		switch (args[0].toLowerCase()) {
 			case "spawn" -> doSpawn(sender);
 			case "setspawn" -> setSpawn(sender);
 			default -> Chat.sendMessage(sender, "invalid-option");
@@ -54,12 +54,13 @@ public class VitalSpawnCmd implements TabExecutor {
 	}
 
 	private void doSpawn(@NotNull CommandSender sender) {
-		Player senderPlayer = (Player) sender;
+
 		Location location = main.getSpawnStorage().getSpawn();
 
 		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.spawn", location)) {
 			return;
 		}
+		Player senderPlayer = (Player) sender;
 
 		senderPlayer.teleport(location);
 		Chat.sendMessage(sender, "spawn-tp");
@@ -79,6 +80,7 @@ public class VitalSpawnCmd implements TabExecutor {
 
 	@Override
 	public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+
 		@Nullable List<String> tabComplete = new ArrayList<>();
 		if (args.length != 1) {
 			return null;
@@ -91,4 +93,5 @@ public class VitalSpawnCmd implements TabExecutor {
 		}
 		return tabComplete;
 	}
+
 }

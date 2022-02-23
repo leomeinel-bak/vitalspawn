@@ -34,6 +34,7 @@ public class PlayerSpawn implements Listener {
 
 	@EventHandler
 	public void onPlayerSpawn(@NotNull PlayerSpawnLocationEvent event) {
+
 		Player player = event.getPlayer();
 		if (!main.getConfig().getBoolean("spawn-on-spawn") && player.hasPermission("vitalspawn.onspawn")) {
 			return;
@@ -46,4 +47,5 @@ public class PlayerSpawn implements Listener {
 		}
 		event.setSpawnLocation(main.getSpawnStorage().getSpawn());
 	}
+
 }

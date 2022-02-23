@@ -35,6 +35,7 @@ public class SpawnStorageSql extends SpawnStorage {
 
 	@Override
 	public Location getSpawn() {
+
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + main.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				if (rs.getString(1) == null) {
@@ -58,6 +59,7 @@ public class SpawnStorageSql extends SpawnStorage {
 
 	@Override
 	public void saveSpawn(@NotNull CommandSender sender) {
+
 		clear();
 
 		Player senderPlayer = (Player) sender;
@@ -78,10 +80,12 @@ public class SpawnStorageSql extends SpawnStorage {
 
 	@Override
 	public void clear() {
+
 		try (PreparedStatement truncateStatement = SqlManager.getConnection().prepareStatement("TRUNCATE TABLE " + main.getPrefix() + " Spawn")) {
 			truncateStatement.executeUpdate();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
 	}
+
 }

@@ -60,10 +60,12 @@ public final class VitalSpawn extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
+
 		Bukkit.getLogger().info("VitalSpawn v" + this.getDescription().getVersion() + " disabled");
 	}
 
 	private void setupStorage() {
+
 		String storageSystem = getConfig().getString("storage-system");
 
 		if (Objects.requireNonNull(storageSystem).equalsIgnoreCase("mysql")) {
@@ -74,19 +76,23 @@ public final class VitalSpawn extends JavaPlugin {
 	}
 
 	private void registerListeners() {
+
 		getServer().getPluginManager().registerEvents(new PlayerSpawn(), this);
 		getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
 	}
 
 	public Messages getMessages() {
+
 		return messages;
 	}
 
 	public String getPrefix() {
+
 		return prefix;
 	}
 
 	public SpawnStorage getSpawnStorage() {
+
 		return spawnStorage;
 	}
 
