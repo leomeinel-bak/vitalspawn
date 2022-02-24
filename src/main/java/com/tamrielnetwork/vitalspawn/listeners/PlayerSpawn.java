@@ -19,7 +19,7 @@
 package com.tamrielnetwork.vitalspawn.listeners;
 
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
-import com.tamrielnetwork.vitalspawn.utils.Chat;
+import com.tamrielnetwork.vitalspawn.utils.commands.CmdSpec;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,12 +40,11 @@ public class PlayerSpawn implements Listener {
 			return;
 		}
 
-		Location location = main.getSpawnStorage().getSpawn();
-		if (location == null) {
-			Chat.sendMessage(player, "no-spawn");
+		Location location = main.getSpawnStorage().loadSpawn();
+		if (CmdSpec.isInvalidLocation(player, location)) {
 			return;
 		}
-		event.setSpawnLocation(main.getSpawnStorage().getSpawn());
+		event.setSpawnLocation(main.getSpawnStorage().loadSpawn());
 	}
 
 }

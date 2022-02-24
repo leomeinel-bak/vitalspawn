@@ -1,4 +1,4 @@
-no-args: "&7Enter this command: &b/vitalspawn setspawn/spawn"
+cmd: "&7Enter this command: &b/vitalspawn setspawn/spawn"
 player-only: "&cThis command can only be executed by players!"
 no-perms: "&7You don't have enough permissions!"
 spawn-set: "&7Spawn location set"

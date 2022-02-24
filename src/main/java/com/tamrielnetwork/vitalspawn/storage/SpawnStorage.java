@@ -28,7 +28,7 @@ public abstract class SpawnStorage {
 
 	protected final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
-	public abstract Location getSpawn();
+	public abstract Location loadSpawn();
 
 	public abstract void saveSpawn(@NotNull CommandSender sender);
 

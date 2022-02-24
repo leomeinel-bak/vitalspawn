@@ -19,6 +19,7 @@
 package com.tamrielnetwork.vitalspawn.storage;
 
 import com.tamrielnetwork.vitalspawn.storage.mysql.SqlManager;
+import com.tamrielnetwork.vitalspawn.utils.storage.Sql;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -33,28 +34,38 @@ import java.util.Objects;
 
 public class SpawnStorageSql extends SpawnStorage {
 
+	public SpawnStorageSql() {
+
+		new SqlManager();
+	}
+
 	@Override
-	public Location getSpawn() {
+	public Location loadSpawn() {
 
-		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + main.getPrefix() + "Spawn")) {
+		World world = null;
+		int x = 0, y = 0, z = 0, yaw = 0, pitch = 0;
+
+		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
-				if (rs.getString(1) == null) {
-					Bukkit.getLogger().severe("VitalSpawn cannot find world in spawn.yml");
-					return null;
+				while (rs.next()) {
+					if (rs.getString(1) == null) {
+						Bukkit.getLogger().severe("VitalSpawn cannot find world in database");
+						continue;
+					}
+					world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(1)));
+					x = rs.getInt(2);
+					y = rs.getInt(3);
+					z = rs.getInt(4);
+					yaw = rs.getInt(5);
+					pitch = rs.getInt(6);
 				}
-				World world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(1)));
-				int x = rs.getInt(2);
-				int y = rs.getInt(3);
-				int z = rs.getInt(4);
-				int yaw = rs.getInt(5);
-				int pitch = rs.getInt(6);
-
-				return new Location(world, x, y, z, yaw, pitch);
 			}
 		} catch (SQLException throwables) {
+
 			throwables.printStackTrace();
 			return null;
 		}
+		return new Location(world, x, y, z, yaw, pitch);
 	}
 
 	@Override
@@ -65,7 +76,7 @@ public class SpawnStorageSql extends SpawnStorage {
 		Player senderPlayer = (Player) sender;
 		Location location = senderPlayer.getLocation();
 
-		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO" + main.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
+		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, location.getWorld().getName());
 			insertStatement.setInt(2, (int) location.getX());
 			insertStatement.setInt(3, (int) location.getY());
@@ -81,7 +92,7 @@ public class SpawnStorageSql extends SpawnStorage {
 	@Override
 	public void clear() {
 
-		try (PreparedStatement truncateStatement = SqlManager.getConnection().prepareStatement("TRUNCATE TABLE " + main.getPrefix() + " Spawn")) {
+		try (PreparedStatement truncateStatement = SqlManager.getConnection().prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
 			truncateStatement.executeUpdate();
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();

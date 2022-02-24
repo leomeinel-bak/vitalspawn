@@ -19,6 +19,7 @@
 package com.tamrielnetwork.vitalspawn.utils.commands;
 
 import com.tamrielnetwork.vitalspawn.utils.Chat;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -42,9 +43,15 @@ public class CmdSpec {
 		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
 	}
 
-	private static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
+	public static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
 
 		if (location == null) {
+			Bukkit.getLogger().severe("VitalSpawn cannot find spawnlocation in database");
+			Chat.sendMessage(sender, "no-spawn");
+			return true;
+		}
+		if (location.getWorld() == null) {
+			Bukkit.getLogger().severe("VitalSpawn cannot find world in database");
 			Chat.sendMessage(sender, "no-spawn");
 			return true;
 		}

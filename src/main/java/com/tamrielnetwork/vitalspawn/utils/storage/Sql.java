@@ -16,35 +16,18 @@
  * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalspawn.listeners;
+package com.tamrielnetwork.vitalspawn.utils.storage;
 
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
-import com.tamrielnetwork.vitalspawn.utils.commands.CmdSpec;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
-public class PlayerRespawn implements Listener {
+public class Sql {
 
-	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
+	private static final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
-	@EventHandler
-	public void onPlayerRespawn(@NotNull PlayerRespawnEvent event) {
+	public static String getPrefix() {
 
-		Player player = event.getPlayer();
-		if (!main.getConfig().getBoolean("spawn-on-respawn") && player.hasPermission("vitalspawn.onrespawn")) {
-			return;
-		}
-
-		Location location = main.getSpawnStorage().loadSpawn();
-		if (CmdSpec.isInvalidLocation(player, location)) {
-			return;
-		}
-		event.setRespawnLocation(main.getSpawnStorage().loadSpawn());
+		return main.getConfig().getString("mysql.prefix");
 	}
 
 }

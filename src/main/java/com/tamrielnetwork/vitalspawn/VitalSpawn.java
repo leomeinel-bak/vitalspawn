@@ -34,7 +34,6 @@ public final class VitalSpawn extends JavaPlugin {
 
 	private SpawnStorage spawnStorage;
 	private Messages messages;
-	private String prefix;
 
 	@Override
 	public void onEnable() {
@@ -49,7 +48,6 @@ public final class VitalSpawn extends JavaPlugin {
 		setupStorage();
 
 		messages = new Messages();
-		prefix = getConfig().getString("mysql.prefix");
 
 		Bukkit.getLogger().info("VitalSpawn v" + this.getDescription().getVersion() + " enabled");
 		Bukkit.getLogger().info("Copyright (C) 2022 Leopold Meinel");
@@ -84,11 +82,6 @@ public final class VitalSpawn extends JavaPlugin {
 	public Messages getMessages() {
 
 		return messages;
-	}
-
-	public String getPrefix() {
-
-		return prefix;
 	}
 
 	public SpawnStorage getSpawnStorage() {

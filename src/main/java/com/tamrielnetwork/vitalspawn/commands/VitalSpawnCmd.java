@@ -48,14 +48,14 @@ public class VitalSpawnCmd implements TabExecutor {
 		switch (args[0].toLowerCase()) {
 			case "spawn" -> doSpawn(sender);
 			case "setspawn" -> setSpawn(sender);
-			default -> Chat.sendMessage(sender, "invalid-option");
+			default -> Chat.sendMessage(sender, "cmd");
 		}
 		return true;
 	}
 
 	private void doSpawn(@NotNull CommandSender sender) {
 
-		Location location = main.getSpawnStorage().getSpawn();
+		Location location = main.getSpawnStorage().loadSpawn();
 
 		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.spawn", location)) {
 			return;
