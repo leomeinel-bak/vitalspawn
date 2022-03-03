@@ -84,6 +84,7 @@ public class SpawnStorageYaml extends SpawnStorage {
 		for (String key : spawnConf.getKeys(false)) {
 			spawnConf.set(key, null);
 		}
+		save();
 	}
 
 	public void save() {
