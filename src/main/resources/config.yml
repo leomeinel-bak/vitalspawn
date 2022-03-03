@@ -1,3 +1,9 @@
+# Command delay
+delay:
+  enabled: true
+  # time in s
+  time: 3
+
 spawn-on-spawn: true
 spawn-on-respawn: true
 

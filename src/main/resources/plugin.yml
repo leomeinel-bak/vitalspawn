@@ -6,9 +6,12 @@ authors: [ Tamriel Network ]
 website: https://tamriel.site
 description: Gives you the ability to set a spawn.
 commands:
-  vitalspawn:
+  spawn:
     description: "Main command"
-    usage: "/vitalspawn"
+    usage: "/spawn"
+  setspawn:
+    description: "Main command"
+    usage: "/setspawn"
 permissions:
   vitalspawn.spawn:
     description: "Permission to teleport to spawn"
@@ -21,4 +24,7 @@ permissions:
     default: op
   vitalspawn.onrespawn:
     description: "Permission to teleport to spawn on respawn"
+    default: op
+  vitalspawn.delay.bypass:
+    description: "Permission to bypass delay"
     default: op

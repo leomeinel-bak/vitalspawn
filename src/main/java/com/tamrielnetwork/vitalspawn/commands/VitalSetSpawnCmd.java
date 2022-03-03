@@ -19,16 +19,16 @@
 package com.tamrielnetwork.vitalspawn.commands;
 
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
+import com.tamrielnetwork.vitalspawn.utils.Chat;
 import com.tamrielnetwork.vitalspawn.utils.commands.Cmd;
 import com.tamrielnetwork.vitalspawn.utils.commands.CmdSpec;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public class VitalSpawnCmd implements CommandExecutor {
+public class VitalSetSpawnCmd implements CommandExecutor {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
@@ -39,19 +39,18 @@ public class VitalSpawnCmd implements CommandExecutor {
 			return true;
 		}
 
-		doSpawn(sender);
+		setSpawn(sender);
 		return true;
 	}
 
-	private void doSpawn(@NotNull CommandSender sender) {
+	private void setSpawn(@NotNull CommandSender sender) {
 
-		Location location = main.getSpawnStorage().loadSpawn();
-
-		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.spawn", location)) {
+		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.setspawn")) {
 			return;
 		}
 
-		CmdSpec.doDelay(sender, location);
+		main.getSpawnStorage().saveSpawn(sender);
+		Chat.sendMessage(sender, "spawn-set");
 
 	}
 

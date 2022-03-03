@@ -18,6 +18,7 @@
 
 package com.tamrielnetwork.vitalspawn;
 
+import com.tamrielnetwork.vitalspawn.commands.VitalSetSpawnCmd;
 import com.tamrielnetwork.vitalspawn.commands.VitalSpawnCmd;
 import com.tamrielnetwork.vitalspawn.files.Messages;
 import com.tamrielnetwork.vitalspawn.listeners.PlayerRespawn;
@@ -40,8 +41,7 @@ public final class VitalSpawn extends JavaPlugin {
 
 		registerListeners();
 
-		Objects.requireNonNull(getCommand("vitalspawn")).setExecutor(new VitalSpawnCmd());
-		Objects.requireNonNull(getCommand("vitalspawn")).setTabCompleter(new VitalSpawnCmd());
+		registerCommands();
 
 		saveDefaultConfig();
 
@@ -77,6 +77,12 @@ public final class VitalSpawn extends JavaPlugin {
 
 		getServer().getPluginManager().registerEvents(new PlayerSpawn(), this);
 		getServer().getPluginManager().registerEvents(new PlayerRespawn(), this);
+	}
+
+	private void registerCommands() {
+
+		Objects.requireNonNull(getCommand("spawn")).setExecutor(new VitalSpawnCmd());
+		Objects.requireNonNull(getCommand("setspawn")).setExecutor(new VitalSetSpawnCmd());
 	}
 
 	public Messages getMessages() {
