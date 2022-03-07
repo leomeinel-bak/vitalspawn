@@ -33,6 +33,7 @@ import java.util.Objects;
 
 public class SpawnStorageYaml extends SpawnStorage {
 
+	private static final String IOEXCEPTION = "VitalSpawn encountered an IOException while executing task";
 	private static final String SPAWN = "spawn.";
 	private static final String WORLD = ".world";
 	private final File spawnFile;
@@ -93,8 +94,8 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 		try {
 			spawnConf.save(spawnFile);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ignored) {
+			Bukkit.getLogger().info(IOEXCEPTION);
 		}
 	}
 

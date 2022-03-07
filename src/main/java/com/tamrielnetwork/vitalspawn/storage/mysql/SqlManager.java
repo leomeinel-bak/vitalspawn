@@ -54,7 +54,7 @@ public class SqlManager {
 		try (PreparedStatement statementSpawnTable = SqlManager.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix() + "Spawn (`World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)");) {
 			statementSpawnTable.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class SqlManager {
 
 			main.getLogger().info("Connected successfully with the database!");
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 

@@ -67,7 +67,7 @@ public class SpawnStorageSql extends SpawnStorage {
 				}
 			}
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -90,7 +90,7 @@ public class SpawnStorageSql extends SpawnStorage {
 			insertStatement.setInt(6, (int) location.getPitch());
 			insertStatement.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
@@ -100,7 +100,7 @@ public class SpawnStorageSql extends SpawnStorage {
 		try (PreparedStatement truncateStatement = SqlManager.getConnection().prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
 			truncateStatement.executeUpdate();
 		} catch (SQLException ignored) {
-			Bukkit.getLogger().info(SQLEXCEPTION);
+			Bukkit.getLogger().warning(SQLEXCEPTION);
 		}
 	}
 
