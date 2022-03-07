@@ -33,12 +33,14 @@ import java.util.Objects;
 
 public class SpawnStorageYaml extends SpawnStorage {
 
+	private static final String SPAWN = "spawn.";
+	private static final String WORLD = ".world";
 	private final File spawnFile;
 	private final FileConfiguration spawnConf;
 
 	public SpawnStorageYaml() {
 
-		spawnFile = new File(main.getDataFolder(), "spawn.yml");
+		spawnFile = new File(main.getDataFolder(), SPAWN + "yml");
 		spawnConf = YamlConfiguration.loadConfiguration(spawnFile);
 		save();
 	}
@@ -46,16 +48,16 @@ public class SpawnStorageYaml extends SpawnStorage {
 	@Override
 	public Location loadSpawn() {
 
-		if (spawnConf.getString("spawn.world") == null) {
-			Bukkit.getLogger().severe("VitalSpawn cannot find world in spawn.yml");
+		if (spawnConf.getString(SPAWN + WORLD) == null) {
+			Bukkit.getLogger().severe("VitalSpawn cannot find world in " + SPAWN + "yml");
 			return null;
 		}
-		World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString("spawn.world")));
-		int x = spawnConf.getInt("spawn.x");
-		int y = spawnConf.getInt("spawn.y");
-		int z = spawnConf.getInt("spawn.z");
-		int yaw = spawnConf.getInt("spawn.yaw");
-		int pitch = spawnConf.getInt("spawn.pitch");
+		World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString(SPAWN + WORLD)));
+		int x = spawnConf.getInt(SPAWN + "x");
+		int y = spawnConf.getInt(SPAWN + "y");
+		int z = spawnConf.getInt(SPAWN + "z");
+		int yaw = spawnConf.getInt(SPAWN + "yaw");
+		int pitch = spawnConf.getInt(SPAWN + "pitch");
 
 		return new Location(world, x, y, z, yaw, pitch);
 	}
@@ -68,12 +70,12 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 		Location location = senderPlayer.getLocation();
 
-		spawnConf.set("spawn.world", location.getWorld().getName());
-		spawnConf.set("spawn.x", (int) location.getX());
-		spawnConf.set("spawn.y", (int) location.getY());
-		spawnConf.set("spawn.z", (int) location.getZ());
-		spawnConf.set("spawn.yaw", (int) location.getYaw());
-		spawnConf.set("spawn.pitch", (int) location.getPitch());
+		spawnConf.set(SPAWN + WORLD, location.getWorld().getName());
+		spawnConf.set(SPAWN + "x", (int) location.getX());
+		spawnConf.set(SPAWN + "y", (int) location.getY());
+		spawnConf.set(SPAWN + "z", (int) location.getZ());
+		spawnConf.set(SPAWN + "yaw", (int) location.getYaw());
+		spawnConf.set(SPAWN + "pitch", (int) location.getPitch());
 
 		save();
 	}

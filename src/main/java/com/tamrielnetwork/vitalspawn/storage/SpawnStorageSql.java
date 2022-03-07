@@ -34,6 +34,8 @@ import java.util.Objects;
 
 public class SpawnStorageSql extends SpawnStorage {
 
+	private static final String SQLEXCEPTION = "VitalSpawn encountered an SQLException while executing task";
+
 	public SpawnStorageSql() {
 
 		new SqlManager();
@@ -43,7 +45,11 @@ public class SpawnStorageSql extends SpawnStorage {
 	public Location loadSpawn() {
 
 		World world = null;
-		int x = 0, y = 0, z = 0, yaw = 0, pitch = 0;
+		int x = 0;
+		int y = 0;
+		int z = 0;
+		int yaw = 0;
+		int pitch = 0;
 
 		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
@@ -60,9 +66,8 @@ public class SpawnStorageSql extends SpawnStorage {
 					pitch = rs.getInt(6);
 				}
 			}
-		} catch (SQLException throwables) {
-
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -84,8 +89,8 @@ public class SpawnStorageSql extends SpawnStorage {
 			insertStatement.setInt(5, (int) location.getYaw());
 			insertStatement.setInt(6, (int) location.getPitch());
 			insertStatement.executeUpdate();
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 
@@ -94,8 +99,8 @@ public class SpawnStorageSql extends SpawnStorage {
 
 		try (PreparedStatement truncateStatement = SqlManager.getConnection().prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
 			truncateStatement.executeUpdate();
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException ignored) {
+			Bukkit.getLogger().info(SQLEXCEPTION);
 		}
 	}
 
