@@ -1,6 +1,6 @@
 /*
  * VitalSpawn is a Spigot Plugin that lets you set a spawn point.
- * Copyright © 2022 Leopold Meinel
+ * Copyright © 2022 Leopold Meinel & contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
