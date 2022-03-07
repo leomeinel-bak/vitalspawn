@@ -36,7 +36,7 @@ public class PlayerRespawn implements Listener {
 	public void onPlayerRespawn(@NotNull PlayerRespawnEvent event) {
 
 		Player player = event.getPlayer();
-		if (!main.getConfig().getBoolean("spawn-on-respawn") && player.hasPermission("vitalspawn.onrespawn")) {
+		if (!main.getConfig().getBoolean("spawn-on-respawn") && !player.hasPermission("vitalspawn.onrespawn")) {
 			return;
 		}
 
