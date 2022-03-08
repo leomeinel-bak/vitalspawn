@@ -18,7 +18,6 @@
 
 package com.tamrielnetwork.vitalspawn.utils.commands;
 
-import com.google.common.collect.ImmutableMap;
 import com.tamrielnetwork.vitalspawn.VitalSpawn;
 import com.tamrielnetwork.vitalspawn.utils.Chat;
 import org.bukkit.Bukkit;
@@ -37,6 +36,10 @@ public class CmdSpec {
 
 	private static final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 	private static final List<UUID> onActiveDelay = new ArrayList<>();
+	private CmdSpec() {
+
+		throw new IllegalStateException("Utility class");
+	}
 
 	public static void doDelay(@NotNull CommandSender sender, Location location) {
 
@@ -49,7 +52,7 @@ public class CmdSpec {
 			}
 			onActiveDelay.add(senderPlayer.getUniqueId());
 			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
-			Chat.sendMessage(senderPlayer, ImmutableMap.of("%countdown%", timeRemaining), "countdown");
+			Chat.sendMessage(senderPlayer, java.util.Map.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
 
 				@Override
