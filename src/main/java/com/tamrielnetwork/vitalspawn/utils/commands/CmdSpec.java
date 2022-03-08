@@ -30,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class CmdSpec {
@@ -52,7 +53,7 @@ public class CmdSpec {
 			}
 			onActiveDelay.add(senderPlayer.getUniqueId());
 			String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
-			Chat.sendMessage(senderPlayer, java.util.Map.of("%countdown%", timeRemaining), "countdown");
+			Chat.sendMessage(senderPlayer, Map.of("%countdown%", timeRemaining), "countdown");
 			new BukkitRunnable() {
 
 				@Override
