@@ -45,7 +45,8 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#commands-and-permissions">Commands and Permissions</a></li>
-        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#configuration - config.yml">Configuration</a></li>
+		<li><a href="#configuration - messages.yml">Configuration</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -88,25 +89,35 @@ To get the plugin running on your server follow these simple steps.
 
 1. Permission: `vitalspawn.setspawn`
 
-* Command: `/vitalspawn setspawn`
+* Command: `/setspawn`
 * Description: Set spawn
 
 2. Permission: `vitalspawn.spawn`
 
-* Command: `/vitalspawn spawn`
+* Command: `/spawn`
 * Description: Teleport to spawn
 
 3. Permission: `vitalspawn.onspawn`
 
-* Description: Teleport to spawn on spawn
+* Description: Teleport to spawn on spawn/join
 
 3. Permission: `vitalspawn.onrespawn`
 
 * Description: Teleport to spawn on respawn
 
+4. Permission: `vitalspawn.delay.bypass`
+
+* Description: Bypass delay
+
 ### Configuration - config.yml
 
 ```
+# Command delay
+delay:
+  enabled: true
+  # time in s
+  time: 3
+
 spawn-on-spawn: true
 spawn-on-respawn: true
 
@@ -125,13 +136,14 @@ mysql:
 ### Configuration - messages.yml
 
 ```
-no-args: "&7Enter this command: &b/vitalspawn setspawn/spawn"
+cmd: "&fUsage: &b/spawn &for &b/setspawn"
+spawn-tp: "&fYou have been teleported to spawn"
+spawn-set: "&fYou have set the new spawn location"
+no-perms: "&cYou don't have enough permissions!"
 player-only: "&cThis command can only be executed by players!"
-invalid-option: "&cInvalid option!"
-no-perms: "&7You don't have enough permissions!"
-spawn-set: "&7Spawn location set"
-spawn-tp: "&7Teleported to spawn"
-no-spawn: "&cSpawn has not been set!"
+no-spawn: "&cNo Spawn has been set!"
+countdown: "&fTeleporting in &b%countdown% &fseconds"
+active-delay: "&cYou are already trying to teleport!"
 ```
 
 <!-- ROADMAP -->
