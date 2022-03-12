@@ -28,31 +28,27 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public class VitalSpawnCmd implements CommandExecutor {
+public class VitalSpawnCmd
+		implements CommandExecutor {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@Override
-	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
+	public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+	                         @NotNull String[] args) {
 		if (Cmd.isArgsLengthNotEqualTo(sender, args, 0)) {
 			return false;
 		}
-
 		doSpawn(sender);
 		return true;
 	}
 
 	private void doSpawn(@NotNull CommandSender sender) {
-
-		Location location = main.getSpawnStorage().loadSpawn();
-
+		Location location = main.getSpawnStorage()
+		                        .loadSpawn();
 		if (CmdSpec.isInvalidCmd(sender, "vitalspawn.spawn", location)) {
 			return;
 		}
-
 		CmdSpec.doDelay(sender, location);
-
 	}
-
 }

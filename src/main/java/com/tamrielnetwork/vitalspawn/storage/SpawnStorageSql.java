@@ -32,30 +32,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class SpawnStorageSql extends SpawnStorage {
+public class SpawnStorageSql
+		extends SpawnStorage {
 
 	private static final String SQLEXCEPTION = "VitalSpawn encountered an SQLException while executing task";
 
 	public SpawnStorageSql() {
-
 		new SqlManager();
 	}
 
 	@Override
 	public Location loadSpawn() {
-
 		World world = null;
 		int x = 0;
 		int y = 0;
 		int z = 0;
 		int yaw = 0;
 		int pitch = 0;
-
-		try (PreparedStatement selectStatement = SqlManager.getConnection().prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
+		try (PreparedStatement selectStatement = SqlManager.getConnection()
+		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (rs.getString(1) == null) {
-						Bukkit.getLogger().severe("VitalSpawn cannot find world in database");
+						Bukkit.getLogger()
+						      .severe("VitalSpawn cannot find world in database");
 						continue;
 					}
 					world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(1)));
@@ -66,8 +66,10 @@ public class SpawnStorageSql extends SpawnStorage {
 					pitch = rs.getInt(6);
 				}
 			}
-		} catch (SQLException ignored) {
-			Bukkit.getLogger().warning(SQLEXCEPTION);
+		}
+		catch (SQLException ignored) {
+			Bukkit.getLogger()
+			      .warning(SQLEXCEPTION);
 			return null;
 		}
 		return new Location(world, x, y, z, yaw, pitch);
@@ -75,33 +77,35 @@ public class SpawnStorageSql extends SpawnStorage {
 
 	@Override
 	public void saveSpawn(@NotNull CommandSender sender) {
-
 		clear();
-
 		Player senderPlayer = (Player) sender;
 		Location location = senderPlayer.getLocation();
-
-		try (PreparedStatement insertStatement = SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
-			insertStatement.setString(1, location.getWorld().getName());
+		try (PreparedStatement insertStatement = SqlManager.getConnection()
+		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
+			insertStatement.setString(1, location.getWorld()
+			                                     .getName());
 			insertStatement.setInt(2, (int) location.getX());
 			insertStatement.setInt(3, (int) location.getY());
 			insertStatement.setInt(4, (int) location.getZ());
 			insertStatement.setInt(5, (int) location.getYaw());
 			insertStatement.setInt(6, (int) location.getPitch());
 			insertStatement.executeUpdate();
-		} catch (SQLException ignored) {
-			Bukkit.getLogger().warning(SQLEXCEPTION);
+		}
+		catch (SQLException ignored) {
+			Bukkit.getLogger()
+			      .warning(SQLEXCEPTION);
 		}
 	}
 
 	@Override
 	public void clear() {
-
-		try (PreparedStatement truncateStatement = SqlManager.getConnection().prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
+		try (PreparedStatement truncateStatement = SqlManager.getConnection()
+		                                                     .prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
 			truncateStatement.executeUpdate();
-		} catch (SQLException ignored) {
-			Bukkit.getLogger().warning(SQLEXCEPTION);
+		}
+		catch (SQLException ignored) {
+			Bukkit.getLogger()
+			      .warning(SQLEXCEPTION);
 		}
 	}
-
 }

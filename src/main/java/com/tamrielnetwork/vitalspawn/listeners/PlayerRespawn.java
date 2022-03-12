@@ -28,23 +28,24 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-public class PlayerRespawn implements Listener {
+public class PlayerRespawn
+		implements Listener {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@EventHandler
 	public void onPlayerRespawn(@NotNull PlayerRespawnEvent event) {
-
 		Player player = event.getPlayer();
-		if (!main.getConfig().getBoolean("spawn-on-respawn") && !player.hasPermission("vitalspawn.onrespawn")) {
+		if (!main.getConfig()
+		         .getBoolean("spawn-on-respawn") && !player.hasPermission("vitalspawn.onrespawn")) {
 			return;
 		}
-
-		Location location = main.getSpawnStorage().loadSpawn();
+		Location location = main.getSpawnStorage()
+		                        .loadSpawn();
 		if (CmdSpec.isInvalidLocation(player, location)) {
 			return;
 		}
-		event.setRespawnLocation(main.getSpawnStorage().loadSpawn());
+		event.setRespawnLocation(main.getSpawnStorage()
+		                             .loadSpawn());
 	}
-
 }

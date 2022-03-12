@@ -28,23 +28,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
-public class PlayerSpawn implements Listener {
+public class PlayerSpawn
+		implements Listener {
 
 	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
 	@EventHandler
 	public void onPlayerSpawn(@NotNull PlayerSpawnLocationEvent event) {
-
 		Player player = event.getPlayer();
-		if (!main.getConfig().getBoolean("spawn-on-spawn") && !player.hasPermission("vitalspawn.onspawn")) {
+		if (!main.getConfig()
+		         .getBoolean("spawn-on-spawn") && !player.hasPermission("vitalspawn.onspawn")) {
 			return;
 		}
-
-		Location location = main.getSpawnStorage().loadSpawn();
+		Location location = main.getSpawnStorage()
+		                        .loadSpawn();
 		if (CmdSpec.isInvalidLocation(player, location)) {
 			return;
 		}
-		event.setSpawnLocation(main.getSpawnStorage().loadSpawn());
+		event.setSpawnLocation(main.getSpawnStorage()
+		                           .loadSpawn());
 	}
-
 }

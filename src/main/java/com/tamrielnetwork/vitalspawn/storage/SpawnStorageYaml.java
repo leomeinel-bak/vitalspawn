@@ -31,7 +31,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SpawnStorageYaml extends SpawnStorage {
+public class SpawnStorageYaml
+		extends SpawnStorage {
 
 	private static final String IOEXCEPTION = "VitalSpawn encountered an IOException while executing task";
 	private static final String SPAWN = "spawn.";
@@ -40,7 +41,6 @@ public class SpawnStorageYaml extends SpawnStorage {
 	private final FileConfiguration spawnConf;
 
 	public SpawnStorageYaml() {
-
 		spawnFile = new File(main.getDataFolder(), SPAWN + "yml");
 		spawnConf = YamlConfiguration.loadConfiguration(spawnFile);
 		save();
@@ -48,9 +48,9 @@ public class SpawnStorageYaml extends SpawnStorage {
 
 	@Override
 	public Location loadSpawn() {
-
 		if (spawnConf.getString(SPAWN + WORLD) == null) {
-			Bukkit.getLogger().severe("VitalSpawn cannot find world in " + SPAWN + "yml");
+			Bukkit.getLogger()
+			      .severe("VitalSpawn cannot find world in " + SPAWN + "yml");
 			return null;
 		}
 		World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString(SPAWN + WORLD)));
@@ -59,31 +59,26 @@ public class SpawnStorageYaml extends SpawnStorage {
 		int z = spawnConf.getInt(SPAWN + "z");
 		int yaw = spawnConf.getInt(SPAWN + "yaw");
 		int pitch = spawnConf.getInt(SPAWN + "pitch");
-
 		return new Location(world, x, y, z, yaw, pitch);
 	}
 
 	@Override
 	public void saveSpawn(@NotNull CommandSender sender) {
-
 		clear();
 		Player senderPlayer = (Player) sender;
-
 		Location location = senderPlayer.getLocation();
-
-		spawnConf.set(SPAWN + WORLD, location.getWorld().getName());
+		spawnConf.set(SPAWN + WORLD, location.getWorld()
+		                                     .getName());
 		spawnConf.set(SPAWN + "x", (int) location.getX());
 		spawnConf.set(SPAWN + "y", (int) location.getY());
 		spawnConf.set(SPAWN + "z", (int) location.getZ());
 		spawnConf.set(SPAWN + "yaw", (int) location.getYaw());
 		spawnConf.set(SPAWN + "pitch", (int) location.getPitch());
-
 		save();
 	}
 
 	@Override
 	public void clear() {
-
 		for (String key : spawnConf.getKeys(false)) {
 			spawnConf.set(key, null);
 		}
@@ -91,12 +86,12 @@ public class SpawnStorageYaml extends SpawnStorage {
 	}
 
 	public void save() {
-
 		try {
 			spawnConf.save(spawnFile);
-		} catch (IOException ignored) {
-			Bukkit.getLogger().info(IOEXCEPTION);
+		}
+		catch (IOException ignored) {
+			Bukkit.getLogger()
+			      .info(IOEXCEPTION);
 		}
 	}
-
 }
