@@ -81,7 +81,8 @@ public class SpawnStorageSql
 		Player senderPlayer = (Player) sender;
 		Location location = senderPlayer.getLocation();
 		try (PreparedStatement insertStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
+		                                                   .prepareStatement(
+				                                                   "INSERT INTO " + Sql.getPrefix() + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
 			insertStatement.setString(1, location.getWorld()
 			                                     .getName());
 			insertStatement.setInt(2, (int) location.getX());
