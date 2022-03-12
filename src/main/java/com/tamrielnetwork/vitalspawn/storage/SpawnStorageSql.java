@@ -50,8 +50,7 @@ public class SpawnStorageSql
 		int yaw = 0;
 		int pitch = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM ?" + "Spawn")) {
-			selectStatement.setString(1, Sql.getPrefix());
+		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (rs.getString(1) == null) {
@@ -82,16 +81,15 @@ public class SpawnStorageSql
 		Player senderPlayer = (Player) sender;
 		Location location = senderPlayer.getLocation();
 		try (PreparedStatement insertStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("INSERT INTO ?"
+		                                                   .prepareStatement("INSERT INTO " + Sql.getPrefix()
 		                                                                     + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
-			insertStatement.setString(1, Sql.getPrefix());
-			insertStatement.setString(2, location.getWorld()
+			insertStatement.setString(1, location.getWorld()
 			                                     .getName());
-			insertStatement.setInt(3, (int) location.getX());
-			insertStatement.setInt(4, (int) location.getY());
-			insertStatement.setInt(5, (int) location.getZ());
-			insertStatement.setInt(6, (int) location.getYaw());
-			insertStatement.setInt(7, (int) location.getPitch());
+			insertStatement.setInt(2, (int) location.getX());
+			insertStatement.setInt(3, (int) location.getY());
+			insertStatement.setInt(4, (int) location.getZ());
+			insertStatement.setInt(5, (int) location.getYaw());
+			insertStatement.setInt(6, (int) location.getPitch());
 			insertStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
@@ -103,8 +101,7 @@ public class SpawnStorageSql
 	@Override
 	public void clear() {
 		try (PreparedStatement truncateStatement = SqlManager.getConnection()
-		                                                     .prepareStatement("TRUNCATE TABLE ?" + "Spawn")) {
-			truncateStatement.setString(1, Sql.getPrefix());
+		                                                     .prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
 			truncateStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
