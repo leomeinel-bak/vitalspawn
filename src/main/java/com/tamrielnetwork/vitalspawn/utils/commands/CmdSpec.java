@@ -75,13 +75,7 @@ public class CmdSpec {
 	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm, Location location) {
-		if (Cmd.isInvalidSender(sender)) {
-			return true;
-		}
-		if (Cmd.isNotPermitted(sender, perm)) {
-			return true;
-		}
-		return isInvalidLocation(sender, location);
+		return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm) || isInvalidLocation(sender, location);
 	}
 
 	public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
@@ -89,15 +83,9 @@ public class CmdSpec {
 	}
 
 	public static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
-		if (location == null) {
+		if (location == null || location.getWorld() == null) {
 			Bukkit.getLogger()
-			      .severe("VitalSpawn cannot find spawnlocation in database");
-			Chat.sendMessage(sender, "no-spawn");
-			return true;
-		}
-		if (location.getWorld() == null) {
-			Bukkit.getLogger()
-			      .severe("VitalSpawn cannot find world in database");
+			      .severe("VitalSpawn cannot find spawn!");
 			Chat.sendMessage(sender, "no-spawn");
 			return true;
 		}
