@@ -50,7 +50,8 @@ public class SpawnStorageSql
 		int yaw = 0;
 		int pitch = 0;
 		try (PreparedStatement selectStatement = SqlManager.getConnection()
-		                                                   .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
+		                                                   .prepareStatement(
+				                                                   "SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
 			try (ResultSet rs = selectStatement.executeQuery()) {
 				while (rs.next()) {
 					if (rs.getString(1) == null) {
@@ -101,7 +102,8 @@ public class SpawnStorageSql
 	@Override
 	public void clear() {
 		try (PreparedStatement truncateStatement = SqlManager.getConnection()
-		                                                     .prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
+		                                                     .prepareStatement(
+				                                                     "TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
 			truncateStatement.executeUpdate();
 		}
 		catch (SQLException ignored) {
