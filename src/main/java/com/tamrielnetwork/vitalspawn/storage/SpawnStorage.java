@@ -32,5 +32,5 @@ public abstract class SpawnStorage {
 
 	public abstract void saveSpawn(@NotNull CommandSender sender);
 
-	public abstract void clear();
+	protected abstract void clear();
 }

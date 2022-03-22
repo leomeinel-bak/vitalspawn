@@ -78,14 +78,13 @@ public class SpawnStorageYaml
 	}
 
 	@Override
-	public void clear() {
+	protected void clear() {
 		for (String key : spawnConf.getKeys(false)) {
 			spawnConf.set(key, null);
 		}
-		save();
 	}
 
-	public void save() {
+	private void save() {
 		try {
 			spawnConf.save(spawnFile);
 		}
