@@ -2,8 +2,7 @@ name: VitalSpawn
 version: @version@
 main: com.tamrielnetwork.vitalspawn.VitalSpawn
 api-version: 1.17
-authors: [ Tamriel Network ]
-website: https://tamriel.site
+authors: [ Leopold Meinel ]
 description: Gives you the ability to set a spawn.
 commands:
   spawn:
