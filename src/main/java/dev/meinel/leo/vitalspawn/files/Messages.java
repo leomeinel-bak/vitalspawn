@@ -16,9 +16,9 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalspawn.files;
+package dev.meinel.leo.vitalspawn.files;
 
-import com.tamrielnetwork.vitalspawn.VitalSpawn;
+import dev.meinel.leo.vitalspawn.VitalSpawn;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,6 +1,6 @@
 name: VitalSpawn
 version: @version@
-main: com.tamrielnetwork.vitalspawn.VitalSpawn
+main: dev.meinel.leo.vitalspawn.VitalSpawn
 api-version: 1.17
 authors: [ Leopold Meinel ]
 description: Gives you the ability to set a spawn.

@@ -16,16 +16,16 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalspawn;
+package dev.meinel.leo.vitalspawn;
 
-import com.tamrielnetwork.vitalspawn.commands.VitalSetSpawnCmd;
-import com.tamrielnetwork.vitalspawn.commands.VitalSpawnCmd;
-import com.tamrielnetwork.vitalspawn.files.Messages;
-import com.tamrielnetwork.vitalspawn.listeners.PlayerRespawn;
-import com.tamrielnetwork.vitalspawn.listeners.PlayerSpawn;
-import com.tamrielnetwork.vitalspawn.storage.SpawnStorage;
-import com.tamrielnetwork.vitalspawn.storage.SpawnStorageSql;
-import com.tamrielnetwork.vitalspawn.storage.SpawnStorageYaml;
+import dev.meinel.leo.vitalspawn.commands.VitalSetSpawnCmd;
+import dev.meinel.leo.vitalspawn.commands.VitalSpawnCmd;
+import dev.meinel.leo.vitalspawn.files.Messages;
+import dev.meinel.leo.vitalspawn.listeners.PlayerRespawn;
+import dev.meinel.leo.vitalspawn.listeners.PlayerSpawn;
+import dev.meinel.leo.vitalspawn.storage.SpawnStorage;
+import dev.meinel.leo.vitalspawn.storage.SpawnStorageSql;
+import dev.meinel.leo.vitalspawn.storage.SpawnStorageYaml;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

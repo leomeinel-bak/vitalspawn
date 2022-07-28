@@ -16,10 +16,10 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalspawn.utils.commands;
+package dev.meinel.leo.vitalspawn.utils.commands;
 
-import com.tamrielnetwork.vitalspawn.VitalSpawn;
-import com.tamrielnetwork.vitalspawn.utils.Chat;
+import dev.meinel.leo.vitalspawn.VitalSpawn;
+import dev.meinel.leo.vitalspawn.utils.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;

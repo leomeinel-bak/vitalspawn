@@ -16,9 +16,9 @@
  * along with this program. If not, see https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
  */
 
-package com.tamrielnetwork.vitalspawn.utils.storage;
+package dev.meinel.leo.vitalspawn.utils.storage;
 
-import com.tamrielnetwork.vitalspawn.VitalSpawn;
+import dev.meinel.leo.vitalspawn.VitalSpawn;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Sql {
