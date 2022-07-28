@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE
+ * along with this program. If not, see https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
  */
 
 package com.tamrielnetwork.vitalspawn;
@@ -54,7 +54,7 @@ public final class VitalSpawn
 		Bukkit.getLogger()
 		      .info("This is free software, and you are welcome to redistribute it under certain conditions.");
 		Bukkit.getLogger()
-		      .info("See https://github.com/TamrielNetwork/VitalSpawn/blob/main/LICENSE for more details.");
+		      .info("See https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE for more details.");
 	}
 
 	@Override
