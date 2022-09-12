@@ -17,40 +17,40 @@ import org.jetbrains.annotations.NotNull;
 
 public class Cmd {
 
-  private Cmd() {
-    throw new IllegalStateException("Utility class");
-  }
-
-  public static boolean isArgsLengthNotEqualTo(
-      @NotNull CommandSender sender,
-      @NotNull String[] args,
-      int length) {
-    if (args.length != length) {
-      Chat.sendMessage(sender, "cmd");
-      return true;
+    private Cmd() {
+        throw new IllegalStateException("Utility class");
     }
-    return false;
-  }
 
-  public static boolean isNotPermitted(
-      @NotNull CommandSender sender,
-      @NotNull String perm) {
-    if (!sender.hasPermission(perm)) {
-      Chat.sendMessage(sender, "no-perms");
-      return true;
+    public static boolean isArgsLengthNotEqualTo(
+            @NotNull CommandSender sender,
+            @NotNull String[] args,
+            int length) {
+        if (args.length != length) {
+            Chat.sendMessage(sender, "cmd");
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
 
-  public static boolean isInvalidSender(@NotNull CommandSender sender) {
-    if (!(sender instanceof Player)) {
-      Chat.sendMessage(sender, "player-only");
-      return true;
+    public static boolean isNotPermitted(
+            @NotNull CommandSender sender,
+            @NotNull String perm) {
+        if (!sender.hasPermission(perm)) {
+            Chat.sendMessage(sender, "no-perms");
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
 
-  public static boolean isInvalidPlayer(Player player) {
-    return !player.isOnline();
-  }
+    public static boolean isInvalidSender(@NotNull CommandSender sender) {
+        if (!(sender instanceof Player)) {
+            Chat.sendMessage(sender, "player-only");
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isInvalidPlayer(Player player) {
+        return !player.isOnline();
+    }
 }

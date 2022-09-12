@@ -26,69 +26,69 @@ import org.jetbrains.annotations.NotNull;
 
 public class CmdSpec {
 
-  private static final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
-  private static final List<UUID> onActiveDelay = new ArrayList<>();
+    private static final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
+    private static final List<UUID> onActiveDelay = new ArrayList<>();
 
-  private CmdSpec() {
-    throw new IllegalStateException("Utility class");
-  }
+    private CmdSpec() {
+        throw new IllegalStateException("Utility class");
+    }
 
-  public static void doDelay(@NotNull CommandSender sender, Location location) {
-    Player senderPlayer = (Player) sender;
-    if (!senderPlayer.hasPermission("vitalspawn.delay.bypass")) {
-      if (onActiveDelay.contains(senderPlayer.getUniqueId())) {
-        Chat.sendMessage(sender, "active-delay");
-        return;
-      }
-      onActiveDelay.add(senderPlayer.getUniqueId());
-      String timeRemaining = String.valueOf(
-          main.getConfig().getLong("delay.time"));
-      Chat.sendMessage(
-          senderPlayer,
-          Map.of("%countdown%", timeRemaining),
-          "countdown");
-      new BukkitRunnable() {
-        @Override
-        public void run() {
-          if (Cmd.isInvalidPlayer(senderPlayer)) {
-            onActiveDelay.remove(senderPlayer.getUniqueId());
-            return;
-          }
-          senderPlayer.teleport(location);
-          Chat.sendMessage(sender, "spawn-tp");
-          onActiveDelay.remove(senderPlayer.getUniqueId());
+    public static void doDelay(@NotNull CommandSender sender, Location location) {
+        Player senderPlayer = (Player) sender;
+        if (!senderPlayer.hasPermission("vitalspawn.delay.bypass")) {
+            if (onActiveDelay.contains(senderPlayer.getUniqueId())) {
+                Chat.sendMessage(sender, "active-delay");
+                return;
+            }
+            onActiveDelay.add(senderPlayer.getUniqueId());
+            String timeRemaining = String.valueOf(
+                    main.getConfig().getLong("delay.time"));
+            Chat.sendMessage(
+                    senderPlayer,
+                    Map.of("%countdown%", timeRemaining),
+                    "countdown");
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if (Cmd.isInvalidPlayer(senderPlayer)) {
+                        onActiveDelay.remove(senderPlayer.getUniqueId());
+                        return;
+                    }
+                    senderPlayer.teleport(location);
+                    Chat.sendMessage(sender, "spawn-tp");
+                    onActiveDelay.remove(senderPlayer.getUniqueId());
+                }
+            }
+                    .runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
+        } else {
+            senderPlayer.teleport(location);
+            Chat.sendMessage(sender, "spawn-tp");
         }
-      }
-          .runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
-    } else {
-      senderPlayer.teleport(location);
-      Chat.sendMessage(sender, "spawn-tp");
     }
-  }
 
-  public static boolean isInvalidCmd(
-      @NotNull CommandSender sender,
-      @NotNull String perm,
-      Location location) {
-    return (Cmd.isInvalidSender(sender) ||
-        Cmd.isNotPermitted(sender, perm) ||
-        isInvalidLocation(sender, location));
-  }
-
-  public static boolean isInvalidCmd(
-      @NotNull CommandSender sender,
-      @NotNull String perm) {
-    return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
-  }
-
-  public static boolean isInvalidLocation(
-      @NotNull CommandSender sender,
-      Location location) {
-    if (location == null || location.getWorld() == null) {
-      Bukkit.getLogger().severe("VitalSpawn cannot find spawn!");
-      Chat.sendMessage(sender, "no-spawn");
-      return true;
+    public static boolean isInvalidCmd(
+            @NotNull CommandSender sender,
+            @NotNull String perm,
+            Location location) {
+        return (Cmd.isInvalidSender(sender) ||
+                Cmd.isNotPermitted(sender, perm) ||
+                isInvalidLocation(sender, location));
     }
-    return false;
-  }
+
+    public static boolean isInvalidCmd(
+            @NotNull CommandSender sender,
+            @NotNull String perm) {
+        return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
+    }
+
+    public static boolean isInvalidLocation(
+            @NotNull CommandSender sender,
+            Location location) {
+        if (location == null || location.getWorld() == null) {
+            Bukkit.getLogger().severe("VitalSpawn cannot find spawn!");
+            Chat.sendMessage(sender, "no-spawn");
+            return true;
+        }
+        return false;
+    }
 }

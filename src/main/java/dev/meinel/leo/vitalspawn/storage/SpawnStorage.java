@@ -18,11 +18,11 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class SpawnStorage {
 
-  protected final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
+    protected final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
-  public abstract Location loadSpawn();
+    public abstract Location loadSpawn();
 
-  public abstract void saveSpawn(@NotNull CommandSender sender);
+    public abstract void saveSpawn(@NotNull CommandSender sender);
 
-  protected abstract void clear();
+    protected abstract void clear();
 }
