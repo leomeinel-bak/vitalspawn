@@ -1,19 +1,11 @@
 /*
- * VitalSpawn is a Spigot Plugin that lets you set a spawn point.
- * Copyright © 2022 Leopold Meinel & contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
+ * File: PlayerSpawn.java
+ * Author: Leopold Meinel (leo@meinel.dev)
+ * -----
+ * Copyright (c) 2022 Leopold Meinel & contributors
+ * SPDX ID: GPL-3.0-or-later
+ * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
+ * -----
  */
 
 package dev.meinel.leo.vitalspawn.listeners;
@@ -28,24 +20,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
-public class PlayerSpawn
-		implements Listener {
+public class PlayerSpawn implements Listener {
 
-	private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
+  private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
 
-	@EventHandler
-	public void onPlayerSpawn(@NotNull PlayerSpawnLocationEvent event) {
-		Player player = event.getPlayer();
-		if (!main.getConfig()
-		         .getBoolean("spawn-on-spawn") && !player.hasPermission("vitalspawn.onspawn")) {
-			return;
-		}
-		Location location = main.getSpawnStorage()
-		                        .loadSpawn();
-		if (CmdSpec.isInvalidLocation(player, location)) {
-			return;
-		}
-		event.setSpawnLocation(main.getSpawnStorage()
-		                           .loadSpawn());
-	}
+  @EventHandler
+  public void onPlayerSpawn(@NotNull PlayerSpawnLocationEvent event) {
+    Player player = event.getPlayer();
+    if (!main.getConfig().getBoolean("spawn-on-spawn") &&
+        !player.hasPermission("vitalspawn.onspawn")) {
+      return;
+    }
+    Location location = main.getSpawnStorage().loadSpawn();
+    if (CmdSpec.isInvalidLocation(player, location)) {
+      return;
+    }
+    event.setSpawnLocation(main.getSpawnStorage().loadSpawn());
+  }
 }

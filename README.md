@@ -1,4 +1,5 @@
 <!-- PROJECT SHIELDS -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -69,15 +70,15 @@ This plugin is perfect for any server wanting to have a spawn.
 
 ### Features
 
-* Set spawn
-* Teleport to spawn
-* MySQL/MariaDB support
-* Teleport to spawn on spawn and respawn
+- Set spawn
+- Teleport to spawn
+- MySQL/MariaDB support
+- Teleport to spawn on spawn and respawn
 
 ### Built With
 
-* [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
-* [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
+- [Gradle 7](https://docs.gradle.org/7.4/release-notes.html)
+- [OpenJDK 17](https://openjdk.java.net/projects/jdk/17/)
 
 <!-- GETTING STARTED -->
 
@@ -89,25 +90,25 @@ To get the plugin running on your server follow these simple steps.
 
 1. Permission: `vitalspawn.setspawn`
 
-* Command: `/setspawn`
-* Description: Set spawn
+- Command: `/setspawn`
+- Description: Set spawn
 
 2. Permission: `vitalspawn.spawn`
 
-* Command: `/spawn`
-* Description: Teleport to spawn
+- Command: `/spawn`
+- Description: Teleport to spawn
 
 3. Permission: `vitalspawn.onspawn`
 
-* Description: Teleport to spawn on spawn/join
+- Description: Teleport to spawn on spawn/join
 
 3. Permission: `vitalspawn.onrespawn`
 
-* Description: Teleport to spawn on respawn
+- Description: Teleport to spawn on respawn
 
 4. Permission: `vitalspawn.delay.bypass`
 
-* Description: Bypass delay
+- Description: Bypass delay
 
 ### Configuration - config.yml
 
@@ -184,30 +185,19 @@ Project Link - [VitalSpawn](https://github.com/LeoMeinel/VitalSpawn) - GitHub
 
 ### Acknowledgements
 
-* [README.md - othneildrew](https://github.com/othneildrew/Best-README-Template)
+- [README.md - othneildrew](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalSpawn?style=for-the-badge
-
 [contributors-url]: https://github.com/LeoMeinel/VitalSpawn/graphs/contributors
-
 [forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalSpawn?label=Forks&style=for-the-badge
-
 [forks-url]: https://github.com/LeoMeinel/VitalSpawn/network/members
-
 [stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalSpawn?style=for-the-badge
-
 [stars-url]: https://github.com/LeoMeinel/VitalSpawn/stargazers
-
 [issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalSpawn?style=for-the-badge
-
 [issues-url]: https://github.com/LeoMeinel/VitalSpawn/issues
-
 [license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalSpawn?style=for-the-badge
-
 [license-url]: https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
-
 [quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalSpawn?style=for-the-badge
-
 [quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalSpawn
