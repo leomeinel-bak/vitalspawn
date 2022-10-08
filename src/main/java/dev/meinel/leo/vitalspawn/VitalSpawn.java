@@ -46,7 +46,7 @@ public final class VitalSpawn extends JavaPlugin {
         Bukkit
                 .getLogger()
                 .info(
-                        "See https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE for more details.");
+                        "See https://www.gnu.org/licenses/gpl-3.0-standalone.html for more details.");
     }
 
     @Override

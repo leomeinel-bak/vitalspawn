@@ -11,7 +11,7 @@
 <!--suppress ALL -->
 <br />
 <p align="center">
-  <a href="https://github.com/LeoMeinel/VitalSpawn">
+  <a href="https://github.com/LeoMeinel/vitalspawn">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -20,14 +20,14 @@
   <p align="center">
     Set Spawn on Spigot and Paper
     <br />
-    <a href="https://github.com/LeoMeinel/VitalSpawn"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/LeoMeinel/vitalspawn"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/LeoMeinel/VitalSpawn">View Demo</a>
+    <a href="https://github.com/LeoMeinel/vitalspawn">View Demo</a>
     ·
-    <a href="https://github.com/LeoMeinel/VitalSpawn/issues">Report Bug</a>
+    <a href="https://github.com/LeoMeinel/vitalspawn/issues">Report Bug</a>
     ·
-    <a href="https://github.com/LeoMeinel/VitalSpawn/issues">Request Feature</a>
+    <a href="https://github.com/LeoMeinel/vitalspawn/issues">Request Feature</a>
   </p>
 
 <!-- ABOUT THE PROJECT -->
@@ -123,7 +123,7 @@ active-delay: "&cYou are already trying to teleport!"
 
 ## Roadmap
 
-See the [open issues](https://github.com/LeoMeinel/VitalSpawn/issues) for a list of proposed features (and known
+See the [open issues](https://github.com/LeoMeinel/vitalspawn/issues) for a list of proposed features (and known
 issues).
 
 <!-- CONTRIBUTING -->
@@ -151,7 +151,7 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
 
 Leopold Meinel - [leo@meinel.dev](mailto:leo@meinel.dev) - eMail
 
-Project Link - [VitalSpawn](https://github.com/LeoMeinel/VitalSpawn) - GitHub
+Project Link - [VitalSpawn](https://github.com/LeoMeinel/vitalspawn) - GitHub
 
 <!-- ACKNOWLEDGEMENTS -->
 
@@ -161,15 +161,15 @@ Project Link - [VitalSpawn](https://github.com/LeoMeinel/VitalSpawn) - GitHub
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/VitalSpawn?style=for-the-badge
-[contributors-url]: https://github.com/LeoMeinel/VitalSpawn/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/LeoMeinel/VitalSpawn?label=Forks&style=for-the-badge
-[forks-url]: https://github.com/LeoMeinel/VitalSpawn/network/members
-[stars-shield]: https://img.shields.io/github/stars/LeoMeinel/VitalSpawn?style=for-the-badge
-[stars-url]: https://github.com/LeoMeinel/VitalSpawn/stargazers
-[issues-shield]: https://img.shields.io/github/issues/LeoMeinel/VitalSpawn?style=for-the-badge
-[issues-url]: https://github.com/LeoMeinel/VitalSpawn/issues
-[license-shield]: https://img.shields.io/github/license/LeoMeinel/VitalSpawn?style=for-the-badge
-[license-url]: https://github.com/LeoMeinel/VitalSpawn/blob/main/LICENSE
-[quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/VitalSpawn?style=for-the-badge
-[quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/VitalSpawn
+[contributors-shield]: https://img.shields.io/github/contributors-anon/LeoMeinel/vitalspawn?style=for-the-badge
+[contributors-url]: https://github.com/LeoMeinel/vitalspawn/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/LeoMeinel/vitalspawn?label=Forks&style=for-the-badge
+[forks-url]: https://github.com/LeoMeinel/vitalspawn/network/members
+[stars-shield]: https://img.shields.io/github/stars/LeoMeinel/vitalspawn?style=for-the-badge
+[stars-url]: https://github.com/LeoMeinel/vitalspawn/stargazers
+[issues-shield]: https://img.shields.io/github/issues/LeoMeinel/vitalspawn?style=for-the-badge
+[issues-url]: https://github.com/LeoMeinel/vitalspawn/issues
+[license-shield]: https://img.shields.io/github/license/LeoMeinel/vitalspawn?style=for-the-badge
+[license-url]: https://github.com/LeoMeinel/vitalspawn/blob/main/LICENSE
+[quality-shield]: https://img.shields.io/codefactor/grade/github/LeoMeinel/vitalspawn?style=for-the-badge
+[quality-url]: https://www.codefactor.io/repository/github/LeoMeinel/vitalspawn
