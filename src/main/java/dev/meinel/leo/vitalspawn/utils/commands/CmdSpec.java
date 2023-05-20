@@ -2,7 +2,7 @@
  * File: CmdSpec.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -41,12 +41,8 @@ public class CmdSpec {
                 return;
             }
             onActiveDelay.add(senderPlayer.getUniqueId());
-            String timeRemaining = String.valueOf(
-                    main.getConfig().getLong("delay.time"));
-            Chat.sendMessage(
-                    senderPlayer,
-                    Map.of("%countdown%", timeRemaining),
-                    "countdown");
+            String timeRemaining = String.valueOf(main.getConfig().getLong("delay.time"));
+            Chat.sendMessage(senderPlayer, Map.of("%countdown%", timeRemaining), "countdown");
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -58,32 +54,24 @@ public class CmdSpec {
                     Chat.sendMessage(sender, "spawn-tp");
                     onActiveDelay.remove(senderPlayer.getUniqueId());
                 }
-            }
-                    .runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
+            }.runTaskLater(main, (main.getConfig().getLong("delay.time") * 20L));
         } else {
             senderPlayer.teleport(location);
             Chat.sendMessage(sender, "spawn-tp");
         }
     }
 
-    public static boolean isInvalidCmd(
-            @NotNull CommandSender sender,
-            @NotNull String perm,
+    public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm,
             Location location) {
-        return (Cmd.isInvalidSender(sender) ||
-                Cmd.isNotPermitted(sender, perm) ||
-                isInvalidLocation(sender, location));
+        return (Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm)
+                || isInvalidLocation(sender, location));
     }
 
-    public static boolean isInvalidCmd(
-            @NotNull CommandSender sender,
-            @NotNull String perm) {
+    public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
         return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
     }
 
-    public static boolean isInvalidLocation(
-            @NotNull CommandSender sender,
-            Location location) {
+    public static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
         if (location == null || location.getWorld() == null) {
             Bukkit.getLogger().severe("VitalSpawn cannot find spawn!");
             Chat.sendMessage(sender, "no-spawn");

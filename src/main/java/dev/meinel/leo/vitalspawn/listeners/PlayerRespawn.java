@@ -2,7 +2,7 @@
  * File: PlayerRespawn.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -27,8 +27,8 @@ public class PlayerRespawn implements Listener {
     @EventHandler
     public void onPlayerRespawn(@NotNull PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        if (!main.getConfig().getBoolean("spawn-on-respawn") &&
-                !player.hasPermission("vitalspawn.onrespawn")) {
+        if (!main.getConfig().getBoolean("spawn-on-respawn")
+                && !player.hasPermission("vitalspawn.onrespawn")) {
             return;
         }
         Location location = main.getSpawnStorage().loadSpawn();

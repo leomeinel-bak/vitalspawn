@@ -2,7 +2,7 @@
  * File: SpawnStorageYaml.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -24,7 +24,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpawnStorageYaml extends SpawnStorage {
 
-    private static final String IOEXCEPTION = "VitalSpawn encountered an IOException while executing task";
+    private static final String IOEXCEPTION =
+            "VitalSpawn encountered an IOException while executing task";
     private static final String SPAWN = "spawn.";
     private static final String WORLD = ".world";
     private final File spawnFile;
@@ -39,13 +40,10 @@ public class SpawnStorageYaml extends SpawnStorage {
     @Override
     public Location loadSpawn() {
         if (spawnConf.getString(SPAWN + WORLD) == null) {
-            Bukkit
-                    .getLogger()
-                    .severe("VitalSpawn cannot find world in " + SPAWN + "yml");
+            Bukkit.getLogger().severe("VitalSpawn cannot find world in " + SPAWN + "yml");
             return null;
         }
-        World world = Bukkit.getWorld(
-                Objects.requireNonNull(spawnConf.getString(SPAWN + WORLD)));
+        World world = Bukkit.getWorld(Objects.requireNonNull(spawnConf.getString(SPAWN + WORLD)));
         int x = spawnConf.getInt(SPAWN + "x");
         int y = spawnConf.getInt(SPAWN + "y");
         int z = spawnConf.getInt(SPAWN + "z");

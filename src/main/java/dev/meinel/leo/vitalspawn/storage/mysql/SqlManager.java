@@ -2,7 +2,7 @@
  * File: SqlManager.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -22,7 +22,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class SqlManager {
 
-    private static final String SQLEXCEPTION = "VitalSpawn encountered an SQLException while executing task";
+    private static final String SQLEXCEPTION =
+            "VitalSpawn encountered an SQLException while executing task";
 
     private static Connection connection;
     private final VitalSpawn main = JavaPlugin.getPlugin(VitalSpawn.class);
@@ -39,13 +40,9 @@ public class SqlManager {
         this.username = main.getConfig().getString("mysql.username");
         this.password = main.getConfig().getString("mysql.password");
         enableConnection();
-        try (
-                PreparedStatement statementSpawnTable = SqlManager
-                        .getConnection()
-                        .prepareStatement(
-                                "CREATE TABLE IF NOT EXISTS " +
-                                        Sql.getPrefix() +
-                                        "Spawn (`World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)");) {
+        try (PreparedStatement statementSpawnTable = SqlManager.getConnection()
+                .prepareStatement("CREATE TABLE IF NOT EXISTS " + Sql.getPrefix()
+                        + "Spawn (`World` TEXT, `X` INT, `Y` INT, `Z` INT, `Yaw` INT, `Pitch` INT)");) {
             statementSpawnTable.executeUpdate();
         } catch (SQLException ignored) {
             Bukkit.getLogger().warning(SQLEXCEPTION);
@@ -65,11 +62,8 @@ public class SqlManager {
             if (getConnection() != null && !getConnection().isClosed()) {
                 return;
             }
-            setConnection(
-                    DriverManager.getConnection(
-                            "jdbc:mysql://" + host + ":" + port + "/" + database,
-                            username,
-                            password));
+            setConnection(DriverManager.getConnection(
+                    "jdbc:mysql://" + host + ":" + port + "/" + database, username, password));
             main.getLogger().info("Connected successfully with the database!");
         } catch (SQLException ignored) {
             Bukkit.getLogger().warning(SQLEXCEPTION);

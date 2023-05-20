@@ -2,7 +2,7 @@
  * File: SpawnStorageSql.java
  * Author: Leopold Meinel (leo@meinel.dev)
  * -----
- * Copyright (c) 2022 Leopold Meinel & contributors
+ * Copyright (c) 2023 Leopold Meinel & contributors
  * SPDX ID: GPL-3.0-or-later
  * URL: https://www.gnu.org/licenses/gpl-3.0-standalone.html
  * -----
@@ -25,7 +25,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpawnStorageSql extends SpawnStorage {
 
-    private static final String SQLEXCEPTION = "VitalSpawn encountered an SQLException while executing task";
+    private static final String SQLEXCEPTION =
+            "VitalSpawn encountered an SQLException while executing task";
 
     public SpawnStorageSql() {
         new SqlManager();
@@ -39,16 +40,12 @@ public class SpawnStorageSql extends SpawnStorage {
         int z = 0;
         int yaw = 0;
         int pitch = 0;
-        try (
-                PreparedStatement selectStatement = SqlManager
-                        .getConnection()
-                        .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
+        try (PreparedStatement selectStatement = SqlManager.getConnection()
+                .prepareStatement("SELECT * FROM " + Sql.getPrefix() + "Spawn")) {
             try (ResultSet rs = selectStatement.executeQuery()) {
                 while (rs.next()) {
                     if (rs.getString(1) == null) {
-                        Bukkit
-                                .getLogger()
-                                .severe("VitalSpawn cannot find world in database");
+                        Bukkit.getLogger().severe("VitalSpawn cannot find world in database");
                         continue;
                     }
                     world = Bukkit.getWorld(Objects.requireNonNull(rs.getString(1)));
@@ -71,13 +68,9 @@ public class SpawnStorageSql extends SpawnStorage {
         clear();
         Player senderPlayer = (Player) sender;
         Location location = senderPlayer.getLocation();
-        try (
-                PreparedStatement insertStatement = SqlManager
-                        .getConnection()
-                        .prepareStatement(
-                                "INSERT INTO " +
-                                        Sql.getPrefix() +
-                                        "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
+        try (PreparedStatement insertStatement =
+                SqlManager.getConnection().prepareStatement("INSERT INTO " + Sql.getPrefix()
+                        + "Spawn (`World`, `X`, `Y`, `Z`, `Yaw`, `Pitch`) VALUES (?, ?, ?, ?, ?, ?)")) {
             insertStatement.setString(1, location.getWorld().getName());
             insertStatement.setInt(2, (int) location.getX());
             insertStatement.setInt(3, (int) location.getY());
@@ -92,10 +85,8 @@ public class SpawnStorageSql extends SpawnStorage {
 
     @Override
     protected void clear() {
-        try (
-                PreparedStatement truncateStatement = SqlManager
-                        .getConnection()
-                        .prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
+        try (PreparedStatement truncateStatement = SqlManager.getConnection()
+                .prepareStatement("TRUNCATE TABLE " + Sql.getPrefix() + "Spawn")) {
             truncateStatement.executeUpdate();
         } catch (SQLException ignored) {
             Bukkit.getLogger().warning(SQLEXCEPTION);

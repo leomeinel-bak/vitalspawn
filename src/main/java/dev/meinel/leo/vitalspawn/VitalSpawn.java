@@ -34,26 +34,18 @@ public final class VitalSpawn extends JavaPlugin {
         saveDefaultConfig();
         setupStorage();
         messages = new Messages();
-        Bukkit
-                .getLogger()
-                .info("VitalSpawn v" + this.getPluginMeta().getVersion() + " enabled");
+        Bukkit.getLogger().info("VitalSpawn v" + this.getPluginMeta().getVersion() + " enabled");
         Bukkit.getLogger().info("Copyright (C) 2022 Leopold Meinel");
         Bukkit.getLogger().info("This program comes with ABSOLUTELY NO WARRANTY!");
-        Bukkit
-                .getLogger()
-                .info(
-                        "This is free software, and you are welcome to redistribute it under certain conditions.");
-        Bukkit
-                .getLogger()
-                .info(
-                        "See https://www.gnu.org/licenses/gpl-3.0-standalone.html for more details.");
+        Bukkit.getLogger().info(
+                "This is free software, and you are welcome to redistribute it under certain conditions.");
+        Bukkit.getLogger()
+                .info("See https://www.gnu.org/licenses/gpl-3.0-standalone.html for more details.");
     }
 
     @Override
     public void onDisable() {
-        Bukkit
-                .getLogger()
-                .info("VitalSpawn v" + this.getPluginMeta().getVersion() + " disabled");
+        Bukkit.getLogger().info("VitalSpawn v" + this.getPluginMeta().getVersion() + " disabled");
     }
 
     private void setupStorage() {
@@ -71,12 +63,8 @@ public final class VitalSpawn extends JavaPlugin {
     }
 
     private void registerCommands() {
-        Objects
-                .requireNonNull(getCommand("spawn"))
-                .setExecutor(new VitalSpawnCmd());
-        Objects
-                .requireNonNull(getCommand("setspawn"))
-                .setExecutor(new VitalSetSpawnCmd());
+        Objects.requireNonNull(getCommand("spawn")).setExecutor(new VitalSpawnCmd());
+        Objects.requireNonNull(getCommand("setspawn")).setExecutor(new VitalSetSpawnCmd());
     }
 
     public Messages getMessages() {
