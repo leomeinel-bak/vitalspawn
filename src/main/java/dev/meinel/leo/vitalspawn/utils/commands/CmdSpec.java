@@ -63,12 +63,12 @@ public class CmdSpec {
 
     public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm,
             Location location) {
-        return (Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm)
+        return (Cmd.isInvalidSender(sender) || !Cmd.isPermitted(sender, perm)
                 || isInvalidLocation(sender, location));
     }
 
     public static boolean isInvalidCmd(@NotNull CommandSender sender, @NotNull String perm) {
-        return Cmd.isInvalidSender(sender) || Cmd.isNotPermitted(sender, perm);
+        return Cmd.isInvalidSender(sender) || !Cmd.isPermitted(sender, perm);
     }
 
     public static boolean isInvalidLocation(@NotNull CommandSender sender, Location location) {
