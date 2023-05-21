@@ -109,7 +109,6 @@ mysql:
 ### Configuration - messages.yml
 
 ```yaml
-cmd: "&fUsage: &b/spawn &for &b/setspawn"
 spawn-tp: "&fYou have been teleported to spawn"
 spawn-set: "&fYou have set the new spawn location"
 no-perms: "&cYou don't have enough permissions!"
